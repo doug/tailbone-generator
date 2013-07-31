@@ -14,8 +14,8 @@ import (
 )
 
 var (
-	reApplication = regexp.MustCompile("^application:[ \t]*([a-zA-Z0-9-]+)[ \t]*")
-	reVersion     = regexp.MustCompile("^version:[ \t]*([a-zA-Z0-9-]+)[ \t]*")
+	reApplication = regexp.MustCompile("application:[ \t]*([a-zA-Z0-9-]+)")
+	reVersion     = regexp.MustCompile("version:[ \t]*([a-zA-Z0-9-]+)")
 )
 
 func pipeCmd(command string, args ...string) error {
@@ -101,7 +101,6 @@ func run(action string) (err error) {
 			}
 			appyaml = reVersion.ReplaceAllStringFunc(appyaml, func(s string) string { return "version: " + version })
 			ioutil.WriteFile("app.yaml", []byte(appyaml), 0644)
-			fmt.Println(version)
 			err = pipeCmd("appcfg.py", "update", "--oauth2", "tailbone")
 		}
 	case "update":

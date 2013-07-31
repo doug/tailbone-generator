@@ -63,7 +63,7 @@ func run(action string) (err error) {
 				index.WriteString(INDEX_TEMPLATE)
 			}
 		}
-	case "serve", "dev":
+	case "serve":
 		if _, err := os.Stat("tailbone"); os.IsNotExist(err) {
 			return errors.New("Must run 'tailbone init' first.")
 		}

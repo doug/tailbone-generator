@@ -63,7 +63,7 @@ func run(action string) (err error) {
 				index.WriteString(INDEX_TEMPLATE)
 			}
 		}
-	case "serve":
+	case "serve", "dev":
 		if _, err := os.Stat("tailbone"); os.IsNotExist(err) {
 			return errors.New("Must run 'tailbone init' first.")
 		}
@@ -121,13 +121,13 @@ func run(action string) (err error) {
 func main() {
 	flag.Parse()
 
+	flag.Usage = func() {
+		fmt.Printf(USAGE_TEMPLATE)
+	}
+
 	if flag.NArg() < 1 {
 		flag.Usage()
 		os.Exit(1)
-	}
-
-	flag.Usage = func() {
-		fmt.Printf(USAGE_TEMPLATE)
 	}
 
 	cmdname := flag.Arg(0)

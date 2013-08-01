@@ -47,7 +47,7 @@ func run(action string) (err error) {
 		if _, err = os.Stat(".git"); os.IsNotExist(err) {
 			return errors.New("Your current directory must be a git repo.")
 		}
-		args := strings.Split("git submodule add -b reorg https://github.com/doug/tailbone.git", " ")
+		args := strings.Split("git submodule add https://github.com/dataarts/tailbone.git", " ")
 		err = pipeCmd(args[0], args[1:]...)
 		if err != nil {
 			return errors.New("Problem checking out the tailbone git submodule.")

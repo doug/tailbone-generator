@@ -58,7 +58,7 @@ func run(action string) (err error) {
 			}
 		}
 		if _, err = os.Stat("app/index.html"); os.IsNotExist(err) {
-			os.Mkdir("app", 0644)
+			os.Mkdir("app", 0755)
 			if index, err := os.Create("app/index.html"); err == nil {
 				index.WriteString(INDEX_TEMPLATE)
 			}
